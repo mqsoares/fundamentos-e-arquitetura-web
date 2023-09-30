@@ -10,16 +10,17 @@
 }
 
 :root {
-    --base-color: #2b2b2b;
+    --base-color: #013B71;
+    --base-color-light: #fff;
+    
     --text-color: #e6edf3;
     --text-color-second: #7d8590;
 
     --color-selection: #262636;
-    --color-details: #66d4ff;
+    --color-details: #FDD400;
 }
 
 body {
-    background-color: var(--base-color);
     color: var(var(--text-color));
     font-family: 'Roboto', sans-serif;
 }
