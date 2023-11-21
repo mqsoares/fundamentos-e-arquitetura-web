@@ -20,12 +20,15 @@
 <br>
 <br>
 
-Para cada disciplina vou adicionar uma nova `Branch`
+Cada disciplina tem uma `Branch`
 <br>
-Na `Main` vai ficar sempre o material da última disciplina.
+Na `Main` fica sempre o material da última disciplina.
 <br>
 <br>
-Visite a pag do projeto online: https://mqsoares.github.io/poswebfull/
+Disciplina atual na Main: ``Design e Arquitetura Web com UX e UI``
+<br>
+<br>
+https://mqsoares.github.io/poswebfull/
 <br>
 
 <p> ⭐ Sinta-se à vontade para dar estrela a este repositório! </p>
