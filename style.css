@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Prata&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* box-shadow: 0 0 0 1px rgba(0,0,0,0.3);  */
+}
+
+:root {
+    --bg-c1: #34495E;
+    --bg-c2: #ECF0F1;
+    --bg-c3: #BDC3C7;
+
+    --tx-c1: #ECF0F1;
+    --tx-c2: #34495E;
+    --tx-c3: #1ABC9C;
+
+    --font-title: 'Prata', serif;
+    --font-text: 'Montserrat', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-color: var(--bg-c2);
+    font-family: var(--font-text);
+    color: var(--tx-c2);
+}
+
+header {
+    height: 70px;
+}
+
+.txtBrLogo{
+    color: var(--tx-c3);
+}
+
+h1, h2 {
+    font-family: var(--font-title);
+}
+
+main p {
+    font-size: 24px;
+}
+
+.bg-header-footer {
+    background-color: var(--bg-c1);
+    color: var(--tx-c1);
+}
+
+.logo {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.content {
+    height: 80vh;
+}
+
+a.btn {
+    font-family: var(--font-text);
+    font-weight: bold;
+    font-size: larger;
+    color: var(--tx-c3);
+
+    background-color: var(--bg-c1);
+    border-radius: 30px;
+    
+    padding: 15px 60px;
+}
+
+div a.btn:hover{
+    background-color: var(--bg-c3);
+    color: var(--tx-c3);
+}
+
+footer {
+    height: 60px;
+    position: absolute;
+    bottom: 0;
+}
