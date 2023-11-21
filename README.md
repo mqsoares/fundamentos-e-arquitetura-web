@@ -20,11 +20,13 @@
 <br>
 <br>
 
-Foi feito um nivelamento e desenvolvemos uma pág web utilizando o git para versionamento.
+Para cada disciplina vou adicionar uma nova `Branch`
 <br>
-Visite a pag do projeto online: https://mqsoares.github.io/fundamentos-e-arquitetura-web/
-
+Na `Main` vai ficar sempre o material da última disciplina.
+<br>
+<br>
+Visite a pag do projeto online: https://mqsoares.github.io/poswebfull/
+<br>
 
 <p> ⭐ Sinta-se à vontade para dar estrela a este repositório! </p>
-
 
