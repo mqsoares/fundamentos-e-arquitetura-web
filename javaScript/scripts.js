@@ -93,25 +93,109 @@ const loadStudentTable = async () => {
   }
 };
 
-// const loadStudentTable2 = () => {
-//   fetch("http://localhost:3000/alunos")
-//     .then((resp) => resp.json())
-//     .then((data) => {
-//       data.forEach((student) => {
-//         // pode ser feito assim também
-//         // const { nome, matricula, curso } = student;
-//         createStudentTableRow(
-//           student.id,
-//           student.nome,
-//           student.matricula,
-//           student.curso
-//         );
-//       });
-//     })
-//     .catch((error) => {
-//       alert("Ocorreu um erro. Tente mais tarde.");
-//       console.error(error);
-//     });
-// };
+const subjectCard = document.querySelector(".subject-list")
+const subjectModal = document.querySelector("#subject-modal");
+const subjectModalTitle = document.querySelector("#subject-modal-title");
+const saveSubjectButton = document.querySelector("#save-subject");
+const subjectForm = document.querySelector("#subject-form");
+
+const createSubjectCard = (id, nome, cargaHoraria, professor, status, observacos) => {
+  const divCard = document.createElement("div");
+  divCard.classList.add("subject-card");
+  divCard.innerHTML = `
+      <h3 class="subject-card__title">${nome}</h3>
+      <hr />
+      <ul class="subject-card__list">
+        <li>carga horária: ${cargaHoraria}</li>
+        <li>Professor: ${professor}</li>
+        <li>Status <span class="tag tag--${status === "Opcional" ? "success" : "danger"}">${status}</span></li>
+      </ul>
+      <p>${observacos}</p>
+     <br>
+      <div style="text-align: end;">
+        <button class="button button--danger" onclick="deleteSubjectCard(${id})">Apagar</button>
+        <button class="button button--success" onclick="updateSubjectCard(${id})">Editar</button>
+      </div>
+  `
+  subjectCard.appendChild(divCard)
+};
+
+const loadSubjectCards = async () => {
+  try {
+    const response = await fetch(`${baseUrl}/disciplinas`);
+    const data = await response.json();
+    // console.log(data)
+    data.forEach(({id, nome, cargaHoraria, professor, status, observacos}) => {
+      createSubjectCard( id, nome, cargaHoraria, professor, status, observacos);
+    });
+  } catch (error) {
+    alert("Ocorreu um erro. Tente mais tarde.");
+    console.error(error);
+  }
+};
+
+const openSubjectModal = () => subjectModal.showModal();
+const closeSubjectModal = () => subjectModal.close();
+
+const createSubject = () => {
+  subjectModalTitle.innerHTML = "Nova Disciplina";
+  saveSubjectButton.innerHTML = "Criar";
+  openSubjectModal();
+  saveSubjectData(`${baseUrl}/disciplinas`, "POST");
+};
+
+const saveSubjectData = (url, method) => {
+  subjectForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    // capturar os dados do formulário
+    const formData = new FormData(subjectForm);
+    // transformar os dados do formulário em um objeto
+    const payload = new URLSearchParams(formData);
+
+    fetch(url, {
+      method: method,
+      body: payload,
+    }).catch((error) => {
+      closeSubjectModal();
+      alert("Ocorreu um erro. Tente mais tarde.");
+      console.error(error);
+    });
+  });
+};
+
+const deleteSubjectCard = (id) => {
+  fetch(`${baseUrl}/disciplinas/${id}`, {
+    method: "DELETE",
+  }).catch((error) => {
+    alert("Ocorreu um erro. Tente mais tarde.");
+    console.error(error);
+  });
+};
+
+const updateSubjectCard = (id) => {
+  console.log("Entrou no update")
+  fetch(`${baseUrl}/disciplinas/${id}`)
+    .then(res => res.json())
+    .then((data) => {
+      const {nome, cargaHoraria, professor, status, observacos} = data;
+      
+      subjectModalTitle.innerHTML = `Editar Disciplina ${nome}`;
+      saveSubjectButton.innerHTML = "Salvar";
+      
+      document.querySelector("#disciplina").value = nome;
+      document.querySelector("#carga").value = cargaHoraria;
+      document.querySelector("#professor").value = professor;
+      document.querySelector("#status").value = status;
+      document.querySelector("#observacoes").value = observacos;
+
+      openSubjectModal();
+      saveSubjectData(`${baseUrl}/disciplinas/${id}`, "PUT");
+    })
+    .catch((error) => {
+      alert("Ocorreu um erro. Tente mais tarde.");
+      console.error(error);
+    });
+}
 
 loadStudentTable();
+loadSubjectCards();
