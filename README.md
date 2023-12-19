@@ -136,45 +136,4 @@ json-server --watch db.json
 | **PUT** | /disciplinas/1 | Atualiza os dados de uma disciplinas
 | **DELETE** | /disciplinas/1 | Remove uma disciplinas
 
-## Desafio
-### Parte 1;
-* Adicionar botão **Nova disciplina** de acordo com o layout proposto;
-* Adicionar botões **APAGAR** e **EDITAR** nos cards de disciplina de acordo com o layout;
-* Caso o campo status receba o valor **Obrigatório** deve exibir o código
-```html
-<span class="tag tag--danger">Obrigatória</span>;
-```
-* Caso o campo status receba o valor **Opcional** deve exibir o código 
-```html
-<span class="tag tag--success">Opcional</span>;
-```
-* Criar uma função para exibir os cards de forma dinâmica consumindo os dados da api ``GET: /disciplinas``
-![screen](layout/desafio/tela-disciplina-desafio.png)
 
-### Parte 2
-* Ao clicar no botão **Nova disciplina** deverá abrir o formulário de cadastro da disciplina;
-* As opções do campo **Selecione o Status** deverão ser: **Obrigatória** e **Opcional**;
-* Salvar os dados do formulário na API api ``POST: /disciplinas``
-![screen](layout/desafio/tela-disciplina-modal.png)
-
-### Parte 3
-* Quando clicar no botão **editar** no card de disciplina deve abrir o modal de edição carregando todas as informações da disciplina;
-* O título do modal será Editar Disciplina;
-* Salvar os dados do formulário na API api  ``PUT: /disciplinas/:id``
-![screen](layout/desafio/tela-disciplina-editar.png)
-
-### Parte 4
-* Quando clicar no botão **apagar** no card de disciplina deve excluir a disciplina;
-* apagar os dados da Disciplina na API api  ``DELETE: /disciplinas/:id``
-
-### Parte 5
-* Criar validação de input vazio para os formulários de aluno;
-* Criar validação de input vazio para os formulários de disciplina
-
-### IMPORTANTE
-Todos os layouts se encontram na pasta ``layout/desafio/``
-
-Se você está contribuindo com este projeto, é recomendável que você saiba:
-* [HTML5](https://www.w3c.br/pub/Cursos/CursoHTML5/html5-web.pdf)
-* [CSS](https://www.w3c.br/Cursos/CursoCSS3/)
-* [JAVASCRIPT](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
