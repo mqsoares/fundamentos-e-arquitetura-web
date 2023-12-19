@@ -6,7 +6,29 @@ const studentForm = document.querySelector("#student-form");
 const studentModalTitle = document.querySelector("#student-modal-title");
 const saveStudentButton = document.querySelector("#save-student");
 
-const validInputs = document.querySelector(".span-valid")
+const isValidInput = (whatValid) => {
+  const inputsRequired = document.querySelectorAll(`.${whatValid}Required`);
+  const modal = document.querySelector(`#${whatValid}-modal`);
+  const messageInvalid = document.querySelector(`.${whatValid}-span-invalid`)
+  const validations = [];
+
+  if (modal.hasAttribute("open")) {
+    inputsRequired.forEach(el => {
+        const elTrim = el.value.trim();
+        if(!elTrim) {
+          el.classList.add("vazio");
+          messageInvalid.innerHTML = "*** Todos os campos são obrigatórios, tente novamente.";
+          validations.push(false);
+        } else {
+          el.classList.remove("vazio");
+          validations.push(true);
+        }
+    })
+  }
+
+  const isValid = validations.every(el => el == true);
+  return isValid;
+}
 
 const openStudentModal = () => studentModal.showModal();
 const closeStudentModal = () => studentModal.close();
@@ -31,29 +53,6 @@ const createStudentTableRow = (id, name, matricula, curso) => {
   studentTable.appendChild(tableTr);
 };
 
-const isValidInput = (whatValid) => {
-  const inputsRequired = document.querySelectorAll(`.${whatValid}Required`);
-  const modal = document.querySelector(`#${whatValid}-modal`);
-  const validations = [];
-
-  if (modal.hasAttribute("open")) {
-    inputsRequired.forEach(el => {
-        const elTrim = el.value.trim();
-        if(!elTrim) {
-          el.classList.add("vazio");
-          validInputs.style.display = "block";
-          validations.push(false);
-        } else {
-          el.classList.remove("vazio");
-          validInputs.style.display = "none";
-          validations.push(true);
-        }
-    })
-  }
-
-  const isValid = validations.every(el => el == true);
-  return isValid;
-}
 
 const saveStundentData = (url, method) => {
   studentForm.addEventListener("submit", (event) => {
@@ -175,19 +174,19 @@ const createSubject = () => {
 const saveSubjectData = (url, method) => {
   subjectForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    // capturar os dados do formulário
-    const formData = new FormData(subjectForm);
-    // transformar os dados do formulário em um objeto
-    const payload = new URLSearchParams(formData);
-
-    fetch(url, {
-      method: method,
-      body: payload,
-    }).catch((error) => {
-      closeSubjectModal();
-      alert("Ocorreu um erro. Tente mais tarde.");
-      console.error(error);
-    });
+    if (isValidInput("subject")){
+      const formData = new FormData(subjectForm);
+      const payload = new URLSearchParams(formData);
+  
+      fetch(url, {
+        method: method,
+        body: payload,
+      }).catch((error) => {
+        closeSubjectModal();
+        alert("Ocorreu um erro. Tente mais tarde.");
+        console.error(error);
+      });
+    }
   });
 };
 
