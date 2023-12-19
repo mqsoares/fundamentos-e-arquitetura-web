@@ -63,6 +63,13 @@
     margin-bottom: 20px;
 }
 
+input.vazio, 
+textarea.vazio, 
+select.vazio {
+    border: 1px solid;
+    border-color: var(--danger-hover);
+}
+
 
 .modal__form input:focus,
 .modal__form textarea:focus {

@@ -64,15 +64,16 @@
           <form id="student-form" class="modal__form">
             <fieldset>
               <label for="nome">Nome</label>
-              <input type="text" placeholder="Nome do aluno..." name="nome" id="nome">
+              <input type="text" placeholder="Nome do aluno..." name="nome" id="nome" class="studentRequired">
               <label>Matrícula</label>
-              <input type="text" placeholder="Matrícula" id="matricula" name="matricula">
+              <input type="text" placeholder="Matrícula" id="matricula" name="matricula" class="studentRequired">
               <label>Curso</label>
-              <select name="curso" id="curso">
+              <select name="curso" id="curso" class="studentRequired">
                 <option value="">selecione</option>
                 <option value="Sistemas para internet">Sistemas para internet</option>
                 <option value="Redes">Redes</option>
               </select>
+              <span class="span-valid" style="color: red; display: none;">*** Todos os campos são obrigatórios, tente novamente.</span>
             </fieldset>
             <div class="modal__form-buttons">
               <button class="button button--danger" type="reset" onclick="closeStudentModal()">

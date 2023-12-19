@@ -6,6 +6,8 @@ const studentForm = document.querySelector("#student-form");
 const studentModalTitle = document.querySelector("#student-modal-title");
 const saveStudentButton = document.querySelector("#save-student");
 
+const validInputs = document.querySelector(".span-valid")
+
 const openStudentModal = () => studentModal.showModal();
 const closeStudentModal = () => studentModal.close();
 
@@ -29,21 +31,47 @@ const createStudentTableRow = (id, name, matricula, curso) => {
   studentTable.appendChild(tableTr);
 };
 
+const isValidInput = (whatValid) => {
+  const inputsRequired = document.querySelectorAll(`.${whatValid}Required`);
+  const modal = document.querySelector(`#${whatValid}-modal`);
+  const validations = [];
+
+  if (modal.hasAttribute("open")) {
+    inputsRequired.forEach(el => {
+        const elTrim = el.value.trim();
+        if(!elTrim) {
+          el.classList.add("vazio");
+          validInputs.style.display = "block";
+          validations.push(false);
+        } else {
+          el.classList.remove("vazio");
+          validInputs.style.display = "none";
+          validations.push(true);
+        }
+    })
+  }
+
+  const isValid = validations.every(el => el == true);
+  return isValid;
+}
+
 const saveStundentData = (url, method) => {
   studentForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    // capturar os dados do formulário
-    const formData = new FormData(studentForm);
-    // transformar os dados do formulário em um objeto
-    const payload = new URLSearchParams(formData);
-    fetch(url, {
-      method: method,
-      body: payload,
-    }).catch((error) => {
-      closeStudentModal();
-      alert("Ocorreu um erro. Tente mais tarde.");
-      console.error(error);
-    });
+    if (isValidInput("student")){
+      // capturar os dados do formulário
+      const formData = new FormData(studentForm);
+      // transformar os dados do formulário em um objeto
+      const payload = new URLSearchParams(formData);
+      fetch(url, {
+        method: method,
+        body: payload,
+      }).catch((error) => {
+        closeStudentModal();
+        alert("Ocorreu um erro. Tente mais tarde.");
+        console.error(error);
+      });
+    }
   });
 };
 
