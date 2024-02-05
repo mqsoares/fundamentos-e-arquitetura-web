@@ -1,7 +1,10 @@
+import { Navbar } from "./components/nav-bar";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 function App() {
     return (
         <>
-            <h1 className="text-primary text-center">Rick and Morty</h1>
+            <Navbar />
         </>
     );
 }
