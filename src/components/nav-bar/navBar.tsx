@@ -1,40 +1,34 @@
+import { Navbar as BoostrapNavbar, Container, Nav } from "react-bootstrap";
+
 export const Navbar = () => {
     return (
-        <header className="container-xl d-flex flex-row flex-nowrap align-items-baseline">
-            <div className="d-flex flex-row">
-                <img
-                    src="/rickmortylogo.svg"
-                    alt="logo rick and morty"
-                    width="40px"
-                ></img>
-                <h1 className="m-0 pt-2">Rick and Morty</h1>
-            </div>
-
-            <nav>
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li className="nav-item">
-                        <a
-                            className="nav-link active"
-                            aria-current="page"
-                            href="#"
-                        >
+        <BoostrapNavbar expand="lg" className="bg-body-tertiary">
+            <Container className="align-items-baseline">
+                <BoostrapNavbar.Brand href="#home">
+                    <div className="d-flex flex-row align-items-baseline gap-2">
+                        <img
+                            src="/rickmortylogo.svg"
+                            alt="logo rick and morty"
+                            width="40px"
+                        ></img>
+                        <span className="fs-3">Rick and Morty</span>
+                    </div>
+                </BoostrapNavbar.Brand>
+                <BoostrapNavbar.Toggle aria-controls="basic-navbar-nav" />
+                <BoostrapNavbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <Nav.Link className="fs-5" href="#personagens">
                             Personagens
-                        </a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">
+                        </Nav.Link>
+                        <Nav.Link className="fs-5" href="#episodios">
                             Episódios
-                        </a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link disabled" aria-disabled="true">
+                        </Nav.Link>
+                        <Nav.Link className="fs-5" href="#localizacao">
                             Localização
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+                        </Nav.Link>
+                    </Nav>
+                </BoostrapNavbar.Collapse>
+            </Container>
+        </BoostrapNavbar>
     );
 };
-
-// className="container d-flex flex-row justify-content-between align-items-baseline"
