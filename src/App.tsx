@@ -1,9 +1,7 @@
-import "./App.css";
-
 function App() {
     return (
         <>
-            <h1>Rick and Morty</h1>
+            <h1 className="text-primary text-center">Rick and Morty</h1>
         </>
     );
 }
