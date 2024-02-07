@@ -1,10 +1,12 @@
 import { Container } from "react-bootstrap";
 
-export const Location = () => {
+import { CharactersCard } from "../../components/characters";
+
+export const Home = () => {
     return (
         <>
             <Container>
-                <h1>Location</h1>
+                <CharactersCard />
             </Container>
         </>
     );

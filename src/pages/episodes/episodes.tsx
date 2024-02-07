@@ -1,7 +1,11 @@
+import { Container } from "react-bootstrap";
+
 export const Episodes = () => {
     return (
         <>
-            <h1>Episodes</h1>
+            <Container>
+                <h1>Episodes</h1>
+            </Container>
         </>
     );
 };
