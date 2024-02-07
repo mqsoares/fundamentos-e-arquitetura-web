@@ -1,10 +1,11 @@
 import { Navbar as BoostrapNavbar, Container, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
     return (
         <BoostrapNavbar expand="lg" className="bg-body-tertiary">
             <Container className="align-items-baseline">
-                <BoostrapNavbar.Brand href="#home">
+                <BoostrapNavbar.Brand href="/">
                     <div className="d-flex flex-row align-items-baseline gap-2">
                         <img
                             src="/rickmortylogo.svg"
@@ -17,15 +18,20 @@ export const Navbar = () => {
                 <BoostrapNavbar.Toggle aria-controls="basic-navbar-nav" />
                 <BoostrapNavbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link className="fs-5" href="#personagens">
+                        <Link className="fs-5 nav-link" to="/">
+                            {" "}
                             Personagens
-                        </Nav.Link>
-                        <Nav.Link className="fs-5" href="#episodios">
+                        </Link>
+
+                        <Link className="fs-5 nav-link" to="episodes">
+                            {" "}
                             Episódios
-                        </Nav.Link>
-                        <Nav.Link className="fs-5" href="#localizacao">
+                        </Link>
+
+                        <Link className="fs-5 nav-link" to="location">
+                            {" "}
                             Localização
-                        </Nav.Link>
+                        </Link>
                     </Nav>
                 </BoostrapNavbar.Collapse>
             </Container>

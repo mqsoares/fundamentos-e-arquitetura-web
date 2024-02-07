@@ -8,3 +8,22 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.nav-link {
+    text-decoration: none;
+    color: #0CAFC1;
+    transition: .3s;
+}
+
+.nav-link:hover {
+    font-weight: 500;
+    color: #55cc44;
+}
+
+.card {
+    transition: .3s;
+}
+
+.card:hover {
+    border: 2px solid #0CAFC1
+}
