@@ -37,6 +37,12 @@
     box-shadow: rgba(85, 204, 68, 0.35) 0px 5px 15px;
 }
 
+@media (max-width: 1400px) {
+    .card-card {
+       min-height: 26rem;
+    }
+}
+
 @media (max-width: 1000px) {
     .wrap-card {
         margin: 1rem;
@@ -45,6 +51,9 @@
     .cards {
         justify-content: center;
     }
+    .card-card {
+        min-height: initial;
+     }
 }
 
 @media (max-width: 767px) {
