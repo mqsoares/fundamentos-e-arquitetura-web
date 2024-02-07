@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import { Navbar } from "./components/nav-bar";
+import { Navbar, Footer } from "./components";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
         <>
             <Navbar />
             <Outlet />
+            <Footer />
         </>
     );
 }
