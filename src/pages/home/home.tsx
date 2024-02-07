@@ -1,13 +1,37 @@
+import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 
-import { CharactersCard } from "../../components/characters";
+import { CharactersCard } from "../../components";
+import { ICharacterCard } from "../../components/types";
+import { getCharacters } from "../../services";
 
 export const Home = () => {
+    const [characters, setCharacters] = useState([]);
+
+    useEffect(() => {
+        getCharacters()
+            .then((data) => setCharacters(data))
+            .catch();
+    }, []);
+
     return (
-        <>
-            <Container>
-                <CharactersCard />
-            </Container>
-        </>
+        <Container>
+            {characters.length === 0 && <h1>Carregando...</h1>}
+            <div className="cards row mt-4">
+                {characters?.map((character: ICharacterCard) => {
+                    return (
+                        <CharactersCard
+                            key={character.id}
+                            name={character.name}
+                            image={character.image}
+                            status={character.status}
+                            species={character.species}
+                            location={character.location}
+                            id={character.id}
+                        />
+                    );
+                })}
+            </div>
+        </Container>
     );
 };
