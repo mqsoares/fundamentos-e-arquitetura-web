@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ICharacterCard } from "../types";
 
 export const CharactersCard = ({
+    id,
     name,
     image,
     status,
@@ -12,8 +13,11 @@ export const CharactersCard = ({
 }: ICharacterCard) => {
     return (
         <div className="wrap-card col col-md-4 col-xl-3 mb-4">
-            <Link className="card text-decoration-none pointer" to="#">
-                <Card style={{ minWidth: "15rem" }}>
+            <Link
+                className="card text-decoration-none pointer"
+                to={`/character/${id}`}
+            >
+                <Card className="card-card" style={{ minWidth: "15rem" }}>
                     <Card.Img variant="top" src={image} />
                     <Badge
                         bg={
