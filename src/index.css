@@ -26,11 +26,11 @@
     color: #55cc44;
 }
 
-.card {
+.card-card {
     transition: .3s;
 }
 
-.card:hover {
+.card-card:hover {
     border: 1px solid #0CAFC1;
     opacity: 0.9;
     transform: scale(1.01 );
