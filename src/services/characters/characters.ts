@@ -7,5 +7,5 @@ export const getCharacters = async () => {
 
 export const getCharacter = async (id: string) => {
     const { data } = await api.get(`character/${id}`);
-    return data.results;
+    return data;
 };
