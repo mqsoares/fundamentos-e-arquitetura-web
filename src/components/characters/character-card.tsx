@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { ICharacterCard } from "../types";
 
-export const CharactersCard = ({
+export const CharacterCard = ({
     id,
     name,
     image,

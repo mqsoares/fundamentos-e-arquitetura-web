@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 
-import { CharactersCard } from "../../components";
+import { CharacterCard } from "../../components";
 import { ICharacterCard } from "../../components/types";
 import { getCharacters } from "../../services";
 
@@ -27,7 +27,7 @@ export const Home = () => {
             <div className="cards row mt-4">
                 {characters?.map((character: ICharacterCard) => {
                     return (
-                        <CharactersCard
+                        <CharacterCard
                             key={character.id}
                             name={character.name}
                             image={character.image}
