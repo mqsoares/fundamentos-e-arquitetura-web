@@ -9,9 +9,16 @@ export const Home = () => {
     const [characters, setCharacters] = useState([]);
 
     useEffect(() => {
-        getCharacters()
-            .then((data) => setCharacters(data))
-            .catch();
+        const fetchCharacters = async () => {
+            try {
+                const data = await getCharacters();
+                setCharacters(data);
+            } catch (error) {
+                // eslint-disable-next-line no-console
+                console.error(error);
+            }
+        };
+        fetchCharacters();
     }, []);
 
     return (
