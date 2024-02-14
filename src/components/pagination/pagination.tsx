@@ -32,7 +32,7 @@ export const Pagination: React.FC<IPropsSetPage> = ({ setPage }) => {
 
     return (
         <nav aria-label="Page navigation">
-            <ul className="pagination justify-content-end pt-4">
+            <ul className="pagination justify-content-end pt-4 gap-2">
                 <li className="page-item page-item-prev ">
                     <button onClick={handlePrev} className="page-link">
                         Anterior

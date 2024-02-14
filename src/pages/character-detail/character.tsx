@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
-import { CharactersDetail, IResult } from "../../components";
+import { BtnBack, CharactersDetail, IResult } from "../../components";
 import { getCharacter } from "../../services";
 
 export const Character = () => {
@@ -30,6 +30,7 @@ export const Character = () => {
     return (
         <Container className="wrap-container">
             {isLoad && <h1>Carregando...</h1>}
+            <BtnBack />
             {character ? (
                 <CharactersDetail
                     id={character.id}
