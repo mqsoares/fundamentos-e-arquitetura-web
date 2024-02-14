@@ -6,7 +6,7 @@ interface IContextType {
     setNumPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const numPageContext = createContext<IContextType>({
+export const NumPageContext = createContext<IContextType>({
     numPage: 1,
     setNumPage: function (): void {
         throw new Error("Function not implemented.");

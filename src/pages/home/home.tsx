@@ -1,14 +1,12 @@
 import { useEffect, useState, useContext } from "react";
 import { Container } from "react-bootstrap";
 
-import { CharacterCard, Pagination } from "../../components";
-import { ICharacterCard } from "../../components/types";
-import { numPageContext } from "../../context/numpage-context";
+import { CharacterCard, ICharacterCard, Pagination } from "../../components";
+import { NumPageContext } from "../../context/num-page-context";
 import { getCharacters } from "../../services";
 
 export const Home = () => {
-    // const [numPage, setNumPage] = useState<number>(1);
-    const { numPage, setNumPage } = useContext(numPageContext);
+    const { numPage, setNumPage } = useContext(NumPageContext);
 
     const [characters, setCharacters] = useState([]);
 
