@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import * as React from "react";
+
+import { NumPageContext } from "../../context/num-page-context";
 
 interface IPropsSetPage {
     setPage: React.Dispatch<React.SetStateAction<number>>;
@@ -7,6 +9,7 @@ interface IPropsSetPage {
 
 export const Pagination: React.FC<IPropsSetPage> = ({ setPage }) => {
     const [nPage, setNpage] = useState<number>(1);
+    const { numPage } = useContext(NumPageContext);
 
     const handlePrev = () => {
         setPage((n: number) => n - 1);
@@ -19,7 +22,7 @@ export const Pagination: React.FC<IPropsSetPage> = ({ setPage }) => {
     };
 
     useEffect(() => {
-        if (nPage > 1) {
+        if (numPage > 1) {
             document
                 .querySelector(".page-item-prev")
                 ?.classList.remove("disabled");
@@ -32,12 +35,13 @@ export const Pagination: React.FC<IPropsSetPage> = ({ setPage }) => {
 
     return (
         <nav aria-label="Page navigation">
-            <ul className="pagination justify-content-end pt-4 gap-2">
+            <ul className="pagination justify-content-end align-items-center pt-4 gap-2">
                 <li className="page-item page-item-prev ">
                     <button onClick={handlePrev} className="page-link">
                         Anterior
                     </button>
                 </li>
+                <div className="display-num-pag">Pág. {numPage}</div>
                 <li className="page-item">
                     <button onClick={handleNext} className="page-link">
                         Próx.

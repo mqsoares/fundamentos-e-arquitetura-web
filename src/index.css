@@ -15,6 +15,7 @@
     box-sizing: border-box;
 }
 
+.display-num-pag,
 .nav-link {
     text-decoration: none;
     color: #0CAFC1;
@@ -34,6 +35,12 @@ nav button.nav-link {
     border: 1px solid #0CAFC1;
     border-radius: 0.375rem;
 }
+
+nav ul li.page-item button.page-link:focus,
+nav button.nav-link:focus {
+    background-color: transparent;
+}
+
 nav ul li.page-item button.page-link:hover,
 nav button.nav-link:hover {
     box-shadow: rgba(85, 204, 68, 0.35) 0px 5px 15px;
