@@ -4,3 +4,4 @@ export * from "./types";
 export * from "./footer";
 export * from "./pagination";
 export * from "./btn-back";
+export * from "./episodes";

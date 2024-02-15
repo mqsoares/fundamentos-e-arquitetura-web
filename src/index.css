@@ -58,6 +58,16 @@ nav button.nav-link:hover {
     box-shadow: rgba(85, 204, 68, 0.35) 0px 5px 15px;
 }
 
+.card-card.card-card-episode {
+    min-height: 9rem;
+ }
+
+ .card-card.card-card-episode div.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+ }
+
 @media (max-width: 1400px) {
     .card-card {
        min-height: 26rem;
