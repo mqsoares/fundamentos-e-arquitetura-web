@@ -4,10 +4,15 @@ import { Link } from "react-router-dom";
 import { IResult } from "../types";
 
 export const CharactersDetail = (character: IResult) => {
-    const onlyNumberEpisode = (str: string) => {
-        const strFormat = str.replace(/[^0-9]/g, " ");
-        return strFormat;
+    const urlsCharacter: string[] | undefined = character?.episode.map(
+        (el) => el,
+    );
+    const extractIdUrlApi = (url: string): string | null => {
+        const match = url.match(/\/(\d+)$/);
+        return match ? match[1] : null;
     };
+    const ids: (string | null)[] | undefined =
+        urlsCharacter?.map(extractIdUrlApi);
 
     return (
         <section className="my-4 d-flex flex-column">
@@ -58,15 +63,17 @@ export const CharactersDetail = (character: IResult) => {
                     {character?.name}&#34;
                 </p>
                 <div className="row text-center">
-                    {/* eslint-disable-next-line no-undef */}
-                    {character?.episode.map<React.ReactNode>((el, index) => (
+                    {ids?.map((el, index) => (
                         <div key={index} className="col-sm-6 col-md-4 col-lg-2">
-                            <Link className="nav-link nav-link-ep fs-4" to="#">
+                            <Link
+                                className="nav-link nav-link-ep fs-4"
+                                to={`/episode/${el}`}
+                            >
                                 <p
                                     className=""
                                     style={{ whiteSpace: "nowrap" }}
                                 >
-                                    Episódio: {onlyNumberEpisode(el)}
+                                    Episódio: {el}
                                 </p>
                             </Link>
                         </div>
@@ -76,3 +83,7 @@ export const CharactersDetail = (character: IResult) => {
         </section>
     );
 };
+
+// {ids?.map<React.ReactNode>((el) => (
+//     <EpisodeCard item={} key={el} />
+// ))}
