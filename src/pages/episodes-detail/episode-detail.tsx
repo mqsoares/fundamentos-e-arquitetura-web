@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
-import { IEpisodeType } from "../../components";
-import { getEpisode } from "../../services";
+import { CharacterCard, ICharacterCard, IEpisodeType } from "../../components";
+import { getCharacterPath, getEpisode } from "../../services";
 
 export const EpisodesDetail = () => {
     const [episode, setEpisode] = useState<IEpisodeType>();
+    const [character, setCharacter] = useState([]);
 
     const { id } = useParams();
-
-    const urlsCharacter: string[] | undefined = episode?.characters.map(
-        (el) => el,
-    );
-    const extractIdFromUrl = (url: string): string | null => {
-        const match = url.match(/\/(\d+)$/);
-        return match ? match[1] : null;
-    };
-    const ids: (string | null)[] | undefined =
-        urlsCharacter?.map(extractIdFromUrl);
-
-    console.log(ids);
 
     useEffect(() => {
         const fecthEpisode = async () => {
             try {
-                const data = await getEpisode(id as string);
-                setEpisode(data);
+                const dataEp = await getEpisode(id as string);
+                setEpisode(dataEp);
+
+                const urlPath = dataEp.characters.map((url: string) =>
+                    url.slice(32),
+                );
+                const fetchCharacter = urlPath.map(async (url: string) => {
+                    const dataCharacter = await getCharacterPath(url);
+                    return dataCharacter;
+                });
+                const fetchedCharacter = await Promise.all(fetchCharacter);
+                setCharacter(fetchedCharacter);
             } catch (error) {
                 // eslint-disable-next-line no-console
                 console.error(error);
@@ -35,34 +35,42 @@ export const EpisodesDetail = () => {
     }, []);
 
     return (
-        <section className="my-4 d-flex flex-column">
-            <div className="p-4 d-flex flex-lg-row justify-content-evenly align-items-center">
-                <div className="fs-4 d-flex flex-column justify-content-evenly ">
-                    <div className="fs-1 fw-bold">
-                        {episode?.name} - {episode?.episode}
+        <Container>
+            <section className="my-4 d-flex flex-column">
+                <div className="p-4 d-flex flex-lg-row justify-content-evenly align-items-center">
+                    <div className="fs-4 d-flex flex-column justify-content-evenly ">
+                        <div className="fs-1 fw-bold">
+                            {episode?.name} - {episode?.episode}
+                        </div>
+                        <p>
+                            <span className="text-secondary">Air date:</span>{" "}
+                            {episode?.air_date}
+                        </p>
                     </div>
-                    <p>
-                        <span className="text-secondary">Air date:</span>{" "}
-                        {episode?.air_date}
+                </div>
+                <div className="pt-4">
+                    <p className="fs-3 text-center text-secondary">
+                        Personagens do Épisodio
                     </p>
                 </div>
-            </div>
-            <div className="pt-4">
-                <p className="fs-3 text-center text-secondary">
-                    Personagens do Épisodio
-                </p>
-            </div>
-            <div className="pt-4">{}</div>
-        </section>
+                <div className="cards row mt-4">
+                    {Object.values(character)?.map(
+                        (character: ICharacterCard) => {
+                            return (
+                                <CharacterCard
+                                    key={character.id}
+                                    name={character.name}
+                                    image={character.image}
+                                    status={character.status}
+                                    species={character.species}
+                                    location={character.location}
+                                    id={character.id}
+                                />
+                            );
+                        },
+                    )}
+                </div>
+            </section>
+        </Container>
     );
 };
-
-{
-    /* <div key={index} className="col-sm-6 col-md-4 col-lg-2">
-                <Link className="nav-link nav-link-ep fs-4" to="#">
-                    <p className="" style={{ whiteSpace: "nowrap" }}>
-                        Personagen: {el}
-                    </p>
-                </Link>
-            </div> */
-}
