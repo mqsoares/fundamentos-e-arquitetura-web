@@ -48,10 +48,9 @@ export const EpisodesDetail = () => {
                         </p>
                     </div>
                 </div>
+                <hr></hr>
                 <div className="pt-4">
-                    <p className="fs-3 text-center text-secondary">
-                        Personagens do Épisodio
-                    </p>
+                    <p className="fs-3 text-center">Personagens do Épisodio</p>
                 </div>
                 <div className="cards row mt-4">
                     {Object.values(character)?.map(
