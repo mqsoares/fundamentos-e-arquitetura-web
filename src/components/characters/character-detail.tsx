@@ -1,33 +1,35 @@
 import { Badge, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
-import { IResult } from "../types";
+type TypeCharacterDetail = {
+    name: string;
+    status: string;
+    species: string;
+    origin: { name: string; url: string };
+    location: { name: string; url: string };
+    image: string;
+    episode: string[];
+};
 
-export const CharactersDetail = (character: IResult) => {
-    const urlsCharacter: string[] | undefined = character?.episode.map(
-        (el) => el,
-    );
-    const extractIdUrlApi = (url: string): string | null => {
-        const match = url.match(/\/(\d+)$/);
-        return match ? match[1] : null;
-    };
-    const ids: (string | null)[] | undefined =
-        urlsCharacter?.map(extractIdUrlApi);
+interface ITypeCharacterDetail {
+    character: TypeCharacterDetail;
+}
 
+export const CharacterDetail = ({ character }: ITypeCharacterDetail) => {
     return (
         <section className="my-4 d-flex flex-column">
-            <Card className="p-4 d-flex flex-lg-row justify-content-evenly align-items-center">
+            <Card className="card-detail p-4 d-flex flex-lg-row justify-content-evenly align-items-center">
                 <Card.Img
                     style={{ maxWidth: "25rem", borderRadius: "1rem" }}
-                    src={character?.image}
+                    src={character.image}
                 />
                 <div className="fs-4 d-flex flex-column justify-content-evenly ">
                     <div className="fs-1 fw-bold">
-                        {character?.name} &#160;
+                        {character.name} &#160;
                         <Badge
                             bg={
-                                character?.status != "Alive"
-                                    ? character?.status != "Dead"
+                                character.status != "Alive"
+                                    ? character.status != "Dead"
                                         ? "secondary"
                                         : "danger"
                                     : "success"
@@ -37,32 +39,33 @@ export const CharactersDetail = (character: IResult) => {
                             }}
                             className=""
                         >
-                            {character?.status}
+                            {character.status}
                         </Badge>
                     </div>
                     <p>
                         <span className="text-secondary">Espécie:</span>{" "}
-                        {character?.species}
+                        {character.species}
                     </p>
                     <p>
                         <span className="text-secondary">Origem:</span>{" "}
-                        {character?.origin.name}
+                        {character.origin.name}
                     </p>
                     <div>
                         <span className="text-secondary">
                             Last known location:
                         </span>
                         <br />
-                        {character?.location.name}
+                        {character.location.name}
                     </div>
                 </div>
             </Card>
+            <hr></hr>
             <div className="pt-4">
                 <p className="fs-3 text-center">
-                    Lista de Episódios com &#34;
-                    {character?.name}&#34;
+                    Episódios em que &#34;
+                    {character.name}&#34; Aparece
                 </p>
-                <div className="row text-center">
+                {/* <div className="row text-center">
                     {ids?.map((el, index) => (
                         <div key={index} className="col-sm-6 col-md-4 col-lg-2">
                             <Link
@@ -78,12 +81,8 @@ export const CharactersDetail = (character: IResult) => {
                             </Link>
                         </div>
                     ))}
-                </div>
+                </div> */}
             </div>
         </section>
     );
 };
-
-// {ids?.map<React.ReactNode>((el) => (
-//     <EpisodeCard item={} key={el} />
-// ))}
