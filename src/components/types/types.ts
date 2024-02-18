@@ -1,49 +1,31 @@
-export interface IInfo {
-    count: number;
-    pages: number;
-    next: string;
-    prev: null;
-}
-
-export interface IOrigin {
-    name: string;
-    url: string;
-}
-
-export interface ILocation {
-    name: string;
-    url: string;
-}
-
-export interface IResult {
+export type TypeCharacterCard = {
     id: number;
     name: string;
     status: string;
     species: string;
-    type: string;
-    gender: string;
-    origin: IOrigin;
-    location: ILocation;
+    location: { name: string; url: string };
+    image: string;
+};
+
+export interface IPropsCharacterCard {
+    character: TypeCharacterCard;
+}
+
+export type TypeCharacterDetail = {
+    name: string;
+    status: string;
+    species: string;
+    origin: { name: string; url: string };
+    location: { name: string; url: string };
     image: string;
     episode: string[];
-    url: string;
-    created: string;
+};
+
+export interface IPropsCharacterDetail {
+    character: TypeCharacterDetail;
 }
 
-export interface ICharacter {
-    info: IInfo;
-    results: IResult[];
-}
-export interface ICharacterCard {
-    id: number;
-    name: string;
-    status: string;
-    species: string;
-    location: ILocation;
-    image: string;
-}
-
-export interface IEpisodeType {
+export type TypeEpisode = {
     id: number;
     name: string;
     air_date: string;
@@ -51,4 +33,8 @@ export interface IEpisodeType {
     characters: string[];
     url: string;
     created: string;
+};
+
+export interface IPropsEpisodeCard {
+    episode: TypeEpisode;
 }

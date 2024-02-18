@@ -1,20 +1,9 @@
 import { Badge, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-type TypeCharacterCard = {
-    id: number;
-    name: string;
-    status: string;
-    species: string;
-    location: { name: string; url: string };
-    image: string;
-};
+import { IPropsCharacterCard } from "..";
 
-interface ICharacterCardProps {
-    character: TypeCharacterCard;
-}
-
-export const CharacterCard = ({ character }: ICharacterCardProps) => {
+export const CharacterCard = ({ character }: IPropsCharacterCard) => {
     return (
         <div className="wrap-card col col-md-4 col-xl-3 mb-4">
             <Link

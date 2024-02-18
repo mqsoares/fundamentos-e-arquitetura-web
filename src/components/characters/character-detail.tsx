@@ -1,21 +1,37 @@
+import { useEffect, useState } from "react";
 import { Badge, Card } from "react-bootstrap";
-// import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-type TypeCharacterDetail = {
-    name: string;
-    status: string;
-    species: string;
-    origin: { name: string; url: string };
-    location: { name: string; url: string };
-    image: string;
-    episode: string[];
-};
+import { getCharacter, getEpisodePath } from "../../services";
 
-interface ITypeCharacterDetail {
-    character: TypeCharacterDetail;
-}
+import { EpisodeCard, IPropsCharacterDetail, TypeEpisode } from "..";
 
-export const CharacterDetail = ({ character }: ITypeCharacterDetail) => {
+export const CharacterDetail = ({ character }: IPropsCharacterDetail) => {
+    const [episodes, setEpisodes] = useState<TypeEpisode[]>([]);
+
+    const { id } = useParams();
+
+    useEffect(() => {
+        const fetchCharacter = async () => {
+            try {
+                const data = await getCharacter(id as string);
+                const pathUrl = data.episode.map((url: string) =>
+                    url.slice(32),
+                );
+                const fetchEpisode = pathUrl.map(async (url: string) => {
+                    const dataEpisode = await getEpisodePath(url);
+                    return dataEpisode;
+                });
+                const allEpisodes: TypeEpisode[] =
+                    await Promise.all(fetchEpisode);
+                setEpisodes(allEpisodes);
+            } catch (error) {
+                // eslint-disable-next-line no-console
+                console.error(error);
+            }
+        };
+        fetchCharacter();
+    }, []);
     return (
         <section className="my-4 d-flex flex-column">
             <Card className="card-detail p-4 d-flex flex-lg-row justify-content-evenly align-items-center">
@@ -62,26 +78,14 @@ export const CharacterDetail = ({ character }: ITypeCharacterDetail) => {
             <hr></hr>
             <div className="pt-4">
                 <p className="fs-3 text-center">
-                    Episódios em que &#34;
-                    {character.name}&#34; Aparece
+                    Episódio(s) em que &#34;
+                    {character.name}&#34; Aparece:
                 </p>
-                {/* <div className="row text-center">
-                    {ids?.map((el, index) => (
-                        <div key={index} className="col-sm-6 col-md-4 col-lg-2">
-                            <Link
-                                className="nav-link nav-link-ep fs-4"
-                                to={`/episode/${el}`}
-                            >
-                                <p
-                                    className=""
-                                    style={{ whiteSpace: "nowrap" }}
-                                >
-                                    Episódio: {el}
-                                </p>
-                            </Link>
-                        </div>
-                    ))}
-                </div> */}
+                <div className="row">
+                    {episodes.map((episode, index) => {
+                        return <EpisodeCard key={index} episode={episode} />;
+                    })}
+                </div>
             </div>
         </section>
     );
