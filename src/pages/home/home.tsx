@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { Container } from "react-bootstrap";
 
-import { CharacterCard, ICharacterCard, Pagination } from "../../components";
+import { CharacterCard, Pagination, SectionCard } from "../../components";
 import { NumPageContext } from "../../context/num-page-context";
 import { getCharacters } from "../../services";
 
@@ -27,21 +27,11 @@ export const Home = () => {
         <Container>
             {characters.length === 0 && <h1>Carregando...</h1>}
             <Pagination setPage={setNumPage} />
-            <div className="cards row mt-4">
-                {characters?.map((character: ICharacterCard) => {
-                    return (
-                        <CharacterCard
-                            key={character.id}
-                            name={character.name}
-                            image={character.image}
-                            status={character.status}
-                            species={character.species}
-                            location={character.location}
-                            id={character.id}
-                        />
-                    );
-                })}
-            </div>
+            <SectionCard>
+                {characters?.map((character, index) => (
+                    <CharacterCard key={index} character={character} />
+                ))}
+            </SectionCard>
         </Container>
     );
 };

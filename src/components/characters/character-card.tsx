@@ -1,28 +1,32 @@
 import { Badge, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import { ICharacterCard } from "../types";
+type TypeCharacterCard = {
+    id: number;
+    name: string;
+    status: string;
+    species: string;
+    location: { name: string; url: string };
+    image: string;
+};
 
-export const CharacterCard = ({
-    id,
-    name,
-    image,
-    status,
-    species,
-    location,
-}: ICharacterCard) => {
+interface ICharacterCardProps {
+    character: TypeCharacterCard;
+}
+
+export const CharacterCard = ({ character }: ICharacterCardProps) => {
     return (
         <div className="wrap-card col col-md-4 col-xl-3 mb-4">
             <Link
                 className="card text-decoration-none pointer"
-                to={`/character/${id}`}
+                to={`/character/${character.id}`}
             >
                 <Card className="card-card" style={{ minWidth: "15rem" }}>
-                    <Card.Img variant="top" src={image} />
+                    <Card.Img variant="top" src={character.image} />
                     <Badge
                         bg={
-                            status != "Alive"
-                                ? status != "Dead"
+                            character.status != "Alive"
+                                ? character.status != "Dead"
                                     ? "secondary"
                                     : "danger"
                                 : "success"
@@ -33,17 +37,19 @@ export const CharacterCard = ({
                         }}
                         className="text-small"
                     >
-                        {status}
+                        {character.status}
                     </Badge>
                     <Card.Body>
-                        <Card.Title className="mb-0">{name}</Card.Title>
-                        <Card.Text>{species}</Card.Text>
+                        <Card.Title className="mb-0">
+                            {character.name}
+                        </Card.Title>
+                        <Card.Text>{character.species}</Card.Text>
                         <Card.Text>
                             <span className="text-secondary">
                                 Last known location:
                             </span>
                             <br />
-                            {location.name}
+                            {character.location.name}
                         </Card.Text>
                     </Card.Body>
                 </Card>
