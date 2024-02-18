@@ -1,5 +1,6 @@
 export * from "./nav-bar";
 export * from "./characters";
+export * from "./section-card";
 export * from "./types";
 export * from "./footer";
 export * from "./pagination";
