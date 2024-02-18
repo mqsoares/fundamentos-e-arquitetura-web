@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { CharacterCard, ICharacterCard, IEpisodeType } from "../../components";
 import { getCharacterPath, getEpisode } from "../../services";
 
-export const EpisodesDetail = () => {
+export const EpisodeDetails = () => {
     const [episode, setEpisode] = useState<IEpisodeType>();
     const [character, setCharacter] = useState([]);
 
