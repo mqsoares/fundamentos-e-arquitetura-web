@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 
-import { EpisodeCard, IEpisodeType } from "../../components";
+import { EpisodeCard, ITypeEpisode } from "../../components";
 import { getEpisodes } from "../../services";
 
 export const Episodes = () => {
@@ -23,8 +23,8 @@ export const Episodes = () => {
     return (
         <Container>
             <div className="cards row mt-4">
-                {episodes?.map((episode: IEpisodeType) => {
-                    return <EpisodeCard item={episode} key={episode.id} />;
+                {episodes?.map((episode: ITypeEpisode) => {
+                    return <EpisodeCard episode={episode} key={episode.id} />;
                 })}
             </div>
         </Container>

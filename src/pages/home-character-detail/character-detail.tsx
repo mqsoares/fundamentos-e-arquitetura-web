@@ -5,14 +5,15 @@ import { useParams } from "react-router-dom";
 import {
     BtnBack,
     CharacterDetail,
-    IResult,
+    ITypeCharacterDetail,
     Loading,
     NotFound,
 } from "../../components";
 import { getCharacter } from "../../services";
 
 export const CharacterDetails = () => {
-    const [character, setCharacter] = useState<IResult>();
+    const [character, setCharacter] = useState<ITypeCharacterDetail>();
+
     const [isLoad, setIsload] = useState(false);
     const [isNotFound, setIsNotFound] = useState(false);
 
@@ -36,7 +37,7 @@ export const CharacterDetails = () => {
     }, []);
 
     return (
-        <Container className="">
+        <Container>
             {(isLoad && <Loading />) || (isNotFound && <NotFound />) || (
                 <>
                     <BtnBack />

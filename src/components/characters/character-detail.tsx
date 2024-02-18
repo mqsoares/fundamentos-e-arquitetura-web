@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 
 import { getCharacter, getEpisodePath } from "../../services";
 
-import { EpisodeCard, IPropsCharacterDetail, TypeEpisode } from "..";
+import { EpisodeCard, IPropsCharacterDetail, ITypeEpisode } from "..";
 
 export const CharacterDetail = ({ character }: IPropsCharacterDetail) => {
-    const [episodes, setEpisodes] = useState<TypeEpisode[]>([]);
+    const [episodes, setEpisodes] = useState<ITypeEpisode[]>([]);
 
     const { id } = useParams();
 
@@ -22,7 +22,7 @@ export const CharacterDetail = ({ character }: IPropsCharacterDetail) => {
                     const dataEpisode = await getEpisodePath(url);
                     return dataEpisode;
                 });
-                const allEpisodes: TypeEpisode[] =
+                const allEpisodes: ITypeEpisode[] =
                     await Promise.all(fetchEpisode);
                 setEpisodes(allEpisodes);
             } catch (error) {
