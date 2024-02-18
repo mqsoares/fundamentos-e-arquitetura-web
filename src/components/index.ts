@@ -6,3 +6,5 @@ export * from "./footer";
 export * from "./pagination";
 export * from "./btn-back";
 export * from "./episodes";
+export * from "./loading";
+export * from "./not-found";
