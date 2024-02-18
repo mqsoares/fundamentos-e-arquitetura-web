@@ -47,6 +47,10 @@ nav button.nav-link:hover {
     color: #55cc44;
 }
 
+.card-detail.card {
+    border: none;
+}
+
 .card-card {
     transition: .3s;
 }
