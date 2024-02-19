@@ -3,7 +3,7 @@ export interface ITypeCharacterCard {
     name: string;
     status: string;
     species: string;
-    location: { name: string; url: string };
+    location: ILocation;
     image: string;
 }
 
@@ -15,10 +15,18 @@ export interface ITypeCharacterDetail {
     name: string;
     status: string;
     species: string;
-    origin: { name: string; url: string };
-    location: { name: string; url: string };
+    origin: IOrigin;
+    location: ILocation;
     image: string;
     episode: string[];
+}
+export interface ILocation {
+    name: string;
+    url: string;
+}
+export interface IOrigin {
+    name: string;
+    url: string;
 }
 
 export interface IPropsCharacterDetail {
@@ -38,4 +46,9 @@ export interface ITypeEpisode {
 
 export interface IPropsEpisodeCard {
     episode: ITypeEpisode;
+}
+
+export interface IPropsEpisodeDetail {
+    episode: ITypeEpisode;
+    characters: ITypeCharacterCard[];
 }
