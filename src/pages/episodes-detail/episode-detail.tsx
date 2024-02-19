@@ -2,33 +2,47 @@ import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
-import { CharacterCard, ICharacterCard, IEpisodeType } from "../../components";
+import {
+    BtnBack,
+    EpisodeDetail,
+    ITypeCharacterCard,
+    ITypeEpisode,
+    Loading,
+    NotFound,
+} from "../../components";
 import { getCharacterPath, getEpisode } from "../../services";
 
 export const EpisodeDetails = () => {
-    const [episode, setEpisode] = useState<IEpisodeType>();
-    const [character, setCharacter] = useState([]);
+    const [episode, setEpisode] = useState<ITypeEpisode>();
+    const [characters, setCharacters] = useState<ITypeCharacterCard[]>([]);
+
+    const [isLoad, setIsload] = useState(false);
+    const [isNotFound, setIsNotFound] = useState(false);
 
     const { id } = useParams();
 
     useEffect(() => {
         const fecthEpisode = async () => {
             try {
-                const dataEp = await getEpisode(id as string);
-                setEpisode(dataEp);
+                setIsload(true);
+                const data = await getEpisode(id as string);
+                setEpisode(data);
 
-                const urlPath = dataEp.characters.map((url: string) =>
+                const urlPath = data.characters.map((url: string) =>
                     url.slice(32),
                 );
                 const fetchCharacter = urlPath.map(async (url: string) => {
                     const dataCharacter = await getCharacterPath(url);
                     return dataCharacter;
                 });
-                const fetchedCharacter = await Promise.all(fetchCharacter);
-                setCharacter(fetchedCharacter);
+                const allCharacter = await Promise.all(fetchCharacter);
+                setCharacters(allCharacter);
             } catch (error) {
                 // eslint-disable-next-line no-console
                 console.error(error);
+                setIsNotFound(true);
+            } finally {
+                setIsload(false);
             }
         };
         fecthEpisode();
@@ -36,40 +50,17 @@ export const EpisodeDetails = () => {
 
     return (
         <Container>
-            <section className="my-4 d-flex flex-column">
-                <div className="p-4 d-flex flex-lg-row justify-content-evenly align-items-center">
-                    <div className="fs-4 d-flex flex-column justify-content-evenly ">
-                        <div className="fs-1 fw-bold">
-                            {episode?.name} - {episode?.episode}
-                        </div>
-                        <p>
-                            <span className="text-secondary">Air date:</span>{" "}
-                            {episode?.air_date}
-                        </p>
-                    </div>
-                </div>
-                <hr></hr>
-                <div className="pt-4">
-                    <p className="fs-3 text-center">Personagens do Épisodio</p>
-                </div>
-                <div className="cards row mt-4">
-                    {Object.values(character)?.map(
-                        (character: ICharacterCard) => {
-                            return (
-                                <CharacterCard
-                                    key={character.id}
-                                    name={character.name}
-                                    image={character.image}
-                                    status={character.status}
-                                    species={character.species}
-                                    location={character.location}
-                                    id={character.id}
-                                />
-                            );
-                        },
+            {(isLoad && <Loading />) || (isNotFound && <NotFound />) || (
+                <>
+                    <BtnBack />
+                    {episode && (
+                        <EpisodeDetail
+                            episode={episode}
+                            characters={characters}
+                        />
                     )}
-                </div>
-            </section>
+                </>
+            )}
         </Container>
     );
 };

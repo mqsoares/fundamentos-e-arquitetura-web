@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 
-import { EpisodeCard, ITypeEpisode, Pagination } from "../../components";
+import {
+    EpisodeCard,
+    Loading,
+    NotFound,
+    Pagination,
+    SectionCard,
+} from "../../components";
 import { getEpisodes } from "../../services";
 
 export const Episodes = () => {
@@ -11,15 +17,23 @@ export const Episodes = () => {
     const [numPage, setNumPage] = useState(1);
     const [numOfPages, setNumOfPages] = useState(1);
 
+    //  loading
+    const [isLoad, setIsload] = useState(false);
+    const [isNotFound, setIsNotFound] = useState(false);
+
     useEffect(() => {
         const fetchEpisodes = async () => {
             try {
+                setIsload(true);
                 const data = await getEpisodes(numPage);
                 setEpisodes(data.results);
                 setNumOfPages(data.info.pages);
             } catch (error) {
                 // eslint-disable-next-line no-console
                 console.error(error);
+                setIsNotFound(true);
+            } finally {
+                setIsload(false);
             }
         };
         fetchEpisodes();
@@ -27,16 +41,22 @@ export const Episodes = () => {
 
     return (
         <Container>
-            <Pagination
-                setPage={setNumPage}
-                numPage={numPage}
-                numOfPages={numOfPages}
-            />
-            <div className="cards row mt-4">
-                {episodes?.map((episode: ITypeEpisode) => {
-                    return <EpisodeCard episode={episode} key={episode.id} />;
-                })}
-            </div>
+            {(isLoad && <Loading />) || (isNotFound && <NotFound />) || (
+                <>
+                    <Pagination
+                        setPage={setNumPage}
+                        numPage={numPage}
+                        numOfPages={numOfPages}
+                    />
+                    <SectionCard>
+                        {episodes?.map((episode, index) => {
+                            return (
+                                <EpisodeCard key={index} episode={episode} />
+                            );
+                        })}
+                    </SectionCard>
+                </>
+            )}
         </Container>
     );
 };
