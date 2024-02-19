@@ -1,0 +1,103 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.display-num-pag,
+.nav-link {
+    text-decoration: none;
+    color: #0CAFC1;
+    transition: .3s;
+}
+
+.nav-link:hover {
+    font-weight: 500;
+    color: #55cc44;
+}
+
+nav ul li.page-item button.page-link,
+nav button.nav-link {
+    padding: 0.5rem 1rem;
+    color: #0CAFC1;
+    font-size: 1.2rem;
+    border: 1px solid #0CAFC1;
+    border-radius: 0.375rem;
+}
+
+nav ul li.page-item button.page-link:focus,
+nav button.nav-link:focus {
+    background-color: transparent;
+}
+
+nav ul li.page-item button.page-link:hover,
+nav button.nav-link:hover {
+    box-shadow: rgba(85, 204, 68, 0.35) 0px 5px 15px;
+    color: #55cc44;
+}
+
+.card-detail.card {
+    border: none;
+}
+
+.card-card {
+    transition: .3s;
+}
+
+.card-card:hover {
+    border: 1px solid #0CAFC1;
+    opacity: 0.9;
+    transform: scale(1.01 );
+    box-shadow: rgba(85, 204, 68, 0.35) 0px 5px 15px;
+}
+
+.card-card.card-card-episode {
+    min-height: 9rem;
+ }
+
+ .card-card.card-card-episode div.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+ }
+
+@media (max-width: 1400px) {
+    .card-card {
+       min-height: 26rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .wrap-card {
+        margin: 1rem;
+    }
+
+    .cards {
+        justify-content: center;
+    }
+
+    .card-card {
+        min-height: initial;
+    }
+}
+
+@media (max-width: 767px) {
+    .wrap-card {
+        margin: initial;
+    }
+
+    .cards {
+        justify-content: center;
+    }
+}
