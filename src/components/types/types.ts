@@ -23,6 +23,7 @@ export interface ITypeCharacterDetail {
 
 export interface IPropsCharacterDetail {
     character: ITypeCharacterDetail;
+    episodes: ITypeEpisode[];
 }
 
 export interface ITypeEpisode {

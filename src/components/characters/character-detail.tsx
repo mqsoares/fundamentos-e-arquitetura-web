@@ -1,37 +1,11 @@
-import { useEffect, useState } from "react";
 import { Badge, Card } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 
-import { getCharacter, getEpisodePath } from "../../services";
+import { EpisodeCard, IPropsCharacterDetail } from "..";
 
-import { EpisodeCard, IPropsCharacterDetail, ITypeEpisode } from "..";
-
-export const CharacterDetail = ({ character }: IPropsCharacterDetail) => {
-    const [episodes, setEpisodes] = useState<ITypeEpisode[]>([]);
-
-    const { id } = useParams();
-
-    useEffect(() => {
-        const fetchCharacter = async () => {
-            try {
-                const data = await getCharacter(id as string);
-                const pathUrl = data.episode.map((url: string) =>
-                    url.slice(32),
-                );
-                const fetchEpisode = pathUrl.map(async (url: string) => {
-                    const dataEpisode = await getEpisodePath(url);
-                    return dataEpisode;
-                });
-                const allEpisodes: ITypeEpisode[] =
-                    await Promise.all(fetchEpisode);
-                setEpisodes(allEpisodes);
-            } catch (error) {
-                // eslint-disable-next-line no-console
-                console.error(error);
-            }
-        };
-        fetchCharacter();
-    }, []);
+export const CharacterDetail = ({
+    character,
+    episodes,
+}: IPropsCharacterDetail) => {
     return (
         <section className="my-4 d-flex flex-column">
             <Card className="card-detail p-4 d-flex flex-lg-row justify-content-evenly align-items-center">
@@ -82,7 +56,7 @@ export const CharacterDetail = ({ character }: IPropsCharacterDetail) => {
                     {character.name}&#34; Aparece:
                 </p>
                 <div className="row">
-                    {episodes.map((episode, index) => {
+                    {Object.values(episodes)?.map((episode, index) => {
                         return <EpisodeCard key={index} episode={episode} />;
                     })}
                 </div>
