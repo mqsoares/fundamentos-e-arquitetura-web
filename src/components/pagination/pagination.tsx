@@ -13,7 +13,6 @@ export const Pagination: React.FC<IPropsSetPage> = ({
     numPage,
 }) => {
     const [nPage, setNpage] = useState<number>(1);
-    const numOfPagesPagination = numOfPages;
 
     const handlePrev = () => {
         setPage((n: number) => n - 1);
@@ -38,7 +37,7 @@ export const Pagination: React.FC<IPropsSetPage> = ({
                 <div className="display-num-pag">
                     Pág. {numPage} / {numOfPages}
                 </div>
-                {numPage < numOfPagesPagination && (
+                {numPage < numOfPages && (
                     <li className="page-item">
                         <button onClick={handleNext} className="page-link">
                             Próx.
