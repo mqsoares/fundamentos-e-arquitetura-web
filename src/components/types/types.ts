@@ -52,3 +52,15 @@ export interface IPropsEpisodeDetail {
     episode: ITypeEpisode;
     characters: ITypeCharacterCard[];
 }
+
+export interface ITypeLocation {
+    id: number;
+    name: string;
+    type: string;
+    dimension: string;
+    residents: string[];
+}
+
+export interface IPropsLocationCard {
+    location: ITypeLocation;
+}
