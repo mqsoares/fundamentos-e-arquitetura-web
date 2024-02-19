@@ -8,3 +8,4 @@ export * from "./btn-back";
 export * from "./episodes";
 export * from "./loading";
 export * from "./not-found";
+export * from "./location";

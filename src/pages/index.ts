@@ -3,3 +3,4 @@ export * from "./episodes";
 export * from "./location";
 export * from "./home-character-detail";
 export * from "./episodes-detail";
+export * from "./location-detail";

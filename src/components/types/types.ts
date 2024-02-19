@@ -64,3 +64,8 @@ export interface ITypeLocation {
 export interface IPropsLocationCard {
     location: ITypeLocation;
 }
+
+export interface IPropsLocationDetail {
+    location: ITypeLocation;
+    residents: ITypeCharacterCard[];
+}
