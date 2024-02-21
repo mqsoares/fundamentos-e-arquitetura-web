@@ -45,6 +45,7 @@ export const Location = () => {
                         setPage={setNumPage}
                         numPage={numPage}
                         numOfPages={numOfPages}
+                        title="Localizações"
                     />
                     <SectionCard>
                         {locations?.map((location, index) => {

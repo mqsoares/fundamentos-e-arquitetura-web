@@ -47,7 +47,7 @@ export const Navbar = () => {
                             }
                         >
                             {" "}
-                            Localização
+                            Localizações
                         </Link>
                     </Nav>
                 </BoostrapNavbar.Collapse>

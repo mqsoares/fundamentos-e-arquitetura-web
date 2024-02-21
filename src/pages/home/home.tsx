@@ -50,6 +50,7 @@ export const Home = () => {
                         setPage={setNumPage}
                         numPage={numPage}
                         numOfPages={numOfPages}
+                        title="Personagens"
                     />
                     <SectionCard>
                         {characters?.map((character, index) => (

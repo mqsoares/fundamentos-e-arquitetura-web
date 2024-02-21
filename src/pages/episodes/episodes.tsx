@@ -50,6 +50,7 @@ export const Episodes = () => {
                         setPage={setNumPage}
                         numPage={numPage}
                         numOfPages={numOfPages}
+                        title="Episódios"
                     />
                     <SectionCard>
                         {episodes?.map((episode, index) => {

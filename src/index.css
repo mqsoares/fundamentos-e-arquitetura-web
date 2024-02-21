@@ -15,7 +15,7 @@
     box-sizing: border-box;
 }
 
-.title-section,
+
 .display-num-pag,
 .nav-link {
     text-decoration: none;
@@ -27,10 +27,14 @@
     font-weight: 500;
     color: #55cc44;
 }
+.title-section,
+.display-title-pag {
+    color: #55cc44;
+}
 
 nav ul li.page-item button.page-link,
 nav button.nav-link {
-    padding: 0.5rem 1rem;
+    padding: 0.15rem 1rem;
     color: #0CAFC1;
     font-size: 1.2rem;
     border: 1px solid #0CAFC1;
