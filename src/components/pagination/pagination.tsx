@@ -31,7 +31,7 @@ export const Pagination: React.FC<IPropsSetPage> = ({
 
     return (
         <nav aria-label="Page navigation">
-            <ul className="pagination justify-content-end align-items-center gap-2">
+            <ul className="pagination justify-content-end align-items-center pt-4 gap-2">
                 {numPage !== 1 && (
                     <>
                         <li className="page-item page-item-prev px-4">

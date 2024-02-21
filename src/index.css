@@ -15,6 +15,7 @@
     box-sizing: border-box;
 }
 
+.title-section,
 .display-num-pag,
 .nav-link {
     text-decoration: none;
