@@ -106,4 +106,12 @@ nav button.nav-link:hover {
     .cards {
         justify-content: center;
     }
+
+}
+
+@media (max-width: 515px) {
+    nav ul.pagination {
+        justify-content: center;
+        flex-direction: column;
+    }
 }
