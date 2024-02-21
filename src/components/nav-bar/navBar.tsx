@@ -17,19 +17,37 @@ export const Navbar = () => {
                 <BoostrapNavbar.Toggle aria-controls="basic-navbar-nav" />
                 <BoostrapNavbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Link className="fs-4 nav-link" to="/">
+                        <Link
+                            className="fs-4 nav-link"
+                            to="/"
+                            onClick={() =>
+                                localStorage.setItem("RMnumPage", "1")
+                            }
+                        >
                             {" "}
                             Personagens
                         </Link>
 
-                        <Link className="fs-4 nav-link" to="episodes">
+                        <Link
+                            className="fs-4 nav-link"
+                            to="episodes"
+                            onClick={() =>
+                                localStorage.setItem("RMnumPage", "1")
+                            }
+                        >
                             {" "}
                             Episódios
                         </Link>
 
-                        <Link className="fs-4 nav-link" to="location">
+                        <Link
+                            className="fs-4 nav-link"
+                            to="location"
+                            onClick={() =>
+                                localStorage.setItem("RMnumPage", "1")
+                            }
+                        >
                             {" "}
-                            Localização
+                            Localizações
                         </Link>
                     </Nav>
                 </BoostrapNavbar.Collapse>

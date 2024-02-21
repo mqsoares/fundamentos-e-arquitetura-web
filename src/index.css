@@ -26,10 +26,15 @@
     font-weight: 500;
     color: #55cc44;
 }
+hr,
+.title-section,
+.display-title-pag {
+    color: #55cc44;
+}
 
 nav ul li.page-item button.page-link,
 nav button.nav-link {
-    padding: 0.5rem 1rem;
+    padding: 0.15rem 1rem;
     color: #0CAFC1;
     font-size: 1.2rem;
     border: 1px solid #0CAFC1;
@@ -45,6 +50,7 @@ nav ul li.page-item button.page-link:hover,
 nav button.nav-link:hover {
     box-shadow: rgba(85, 204, 68, 0.35) 0px 5px 15px;
     color: #55cc44;
+    border-color: #55cc44;
 }
 
 .card-detail.card {
@@ -99,5 +105,13 @@ nav button.nav-link:hover {
 
     .cards {
         justify-content: center;
+    }
+
+}
+
+@media (max-width: 515px) {
+    nav ul.pagination {
+        justify-content: center;
+        flex-direction: column;
     }
 }

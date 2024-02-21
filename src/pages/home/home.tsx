@@ -14,7 +14,9 @@ export const Home = () => {
     const [characters, setCharacters] = useState([]);
 
     //pagination
-    const [numPage, setNumPage] = useState(1);
+    const [numPage, setNumPage] = useState(
+        parseInt(localStorage.getItem("RMnumPage") || "1"),
+    );
     const [numOfPages, setNumOfPages] = useState(1);
 
     //  loading
@@ -36,6 +38,7 @@ export const Home = () => {
                 setIsload(false);
             }
         };
+        localStorage.setItem("RMnumPage", numPage.toString());
         fetchCharacters();
     }, [numPage]);
 
@@ -47,6 +50,7 @@ export const Home = () => {
                         setPage={setNumPage}
                         numPage={numPage}
                         numOfPages={numOfPages}
+                        title="Personagens"
                     />
                     <SectionCard>
                         {characters?.map((character, index) => (

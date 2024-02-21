@@ -8,6 +8,7 @@ export const LocationDetail = ({
         <section className="my-4 d-flex flex-column">
             <div className="p-4 d-flex flex-lg-row justify-content-evenly align-items-center">
                 <div className="fs-4 d-flex flex-column justify-content-evenly ">
+                    <h4 className="title-section mt-2">Localização: </h4>
                     <div className="fs-1 fw-bold">{location?.name}</div>
                     <p>
                         <span className="text-secondary">Type:</span>{" "}
@@ -21,8 +22,8 @@ export const LocationDetail = ({
             </div>
             <hr></hr>
             <div className="pt-4">
-                <p className="fs-3 text-center">
-                    Personagens que Residem Nessa Localização:
+                <p className="fs-4 text-center">
+                    Residentes de {location?.type} / {location?.name}:
                 </p>
             </div>
             <div className="cards row mt-4">
