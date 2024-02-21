@@ -9,7 +9,9 @@ export const Location = () => {
     const [locations, setLocations] = useState([]);
 
     //pagination
-    const [numPage, setNumPage] = useState(1);
+    const [numPage, setNumPage] = useState(
+        parseInt(localStorage.getItem("RMnumPage") || "1"),
+    );
     const [numOfPages, setNumOfPages] = useState(1);
 
     //  loading
@@ -31,6 +33,7 @@ export const Location = () => {
                 setIsload(false);
             }
         };
+        localStorage.setItem("RMnumPage", numPage.toString());
         fetchLocations();
     }, [numPage]);
 
